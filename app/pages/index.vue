@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <el-button type="danger" @click="clearOpts">清空选项</el-button>
-    <el-select v-model="opt" value-key="id" @change="handleChange">
+  <div class='flex flex-row'>
+    <el-button class='mr-2' type="danger" @click="clearOpts">清空选项</el-button>
+    <el-select
+      v-model="opt"
+      value-key="id"
+      @change="handleChange"
+      filterable
+      clearable
+      remote
+      :remote-method="remoteMethod"
+      placeholder="请输入选项"
+    >
       <el-option
         v-for="(item, i) in opts"
         :key="i"
@@ -39,6 +48,9 @@ const clearOpts = () => {
 };
 const handleChange = (val: any) => {
   console.log(val);
+};
+const remoteMethod = (query: string) => {
+  console.log(query);
 };
 </script>
 
